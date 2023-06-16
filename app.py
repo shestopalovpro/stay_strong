@@ -16,6 +16,15 @@ c.execute('''CREATE TABLE IF NOT EXISTS exercises
               name TEXT)''')
 conn.commit()
 
+@app.route('/')
+def index():
+    # получение всех записей из таблицы trainings
+    conn = get_db_connection()
+    c = conn.cursor()
+    return render_template('index.html')
+
+
+
 @app.route('/trains')
 def trains():
     # получение всех записей из таблицы trainings
