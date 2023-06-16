@@ -1,0 +1,67 @@
+<html>
+<head>
+    <title>План упражнений</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            font-size: 22px;
+        }
+        h1 {
+            text-align: center;
+            margin-top: 50px;
+        }
+        a {display: block; text-align: center;}
+        form {
+            margin: 50px auto;
+            width: 50%;
+            border: 2px solid #ccc;;
+            padding: 20px;
+            border-radius: 10px;
+        }
+        label {
+            display: block;
+            margin-bottom: 10px;
+        }
+        input[type="date"],
+        select,
+        input[type="number"] {
+            padding: 5px;
+            border-radius: 5px;
+            border: 2px solid #ccc;;
+            margin-bottom: 20px;
+            width: 100%;
+        }
+        input[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        input[type="submit"]:hover {
+            background-color: #3e8e41;
+        }
+    </style>
+</head>
+<body>
+    <h1>План упражнений</h1>
+    <form action="/result" method="post">
+        <label for="date">Дата:</label>
+        <input type="date" name="date" id="date">
+        <label for="exercise">Упражнение:</label>
+        <select name="exercise">
+            {% for option in options %}
+            <option value="{{ option }}">{{ option }}</option>
+            {% endfor %}
+        </select>
+        <label for="approaches">Количество подходов:</label>
+        <input type="number" name="approaches" id="approaches">
+        <label for="quantity">Количество повторений:</label>
+        <input type="number" name="quantity" id="quantity">
+        <input type="submit" value="Запланировать">
+    </form>
+
+    <a href = "/"> На главную</a>
+</body>
+</html>
