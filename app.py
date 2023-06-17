@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request, redirect
 import sqlite3
+import datetime
 
 app = Flask(__name__,template_folder='templates')
 
@@ -28,8 +29,8 @@ def index():
     # получение всех записей из таблицы trainings
     conn = get_db_connection()
     c = conn.cursor()
-    
-    c.execute("SELECT id, exercise, quantity FROM plan WHERE done = 0")
+    current_date = datetime.date.today()
+    c.execute("SELECT id, exercise, quantity FROM plan WHERE done = 0 AND date = ?",(current_date,))
     exercises = c.fetchall()
     return render_template('index.html', exercises=exercises)
 

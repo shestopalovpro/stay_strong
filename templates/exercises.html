@@ -65,24 +65,26 @@
 </head>
 <body>
     <h1>Список упражнений</h1>
-    <table>
-        <tr>
-            <th>Номер</th>
-            <th>Упражнение</th>
-        </tr>
-        {% for row in rows %}
-        <tr>
-            <td>{{ row[0] }}</td>
-            <td>{{ row[1] }}</td>
-        </tr>
-        {% endfor %}
-    </table>
+    <a href = "/"> На главную</a>
     <h2>Добавить упражнение</h2>
     <form action="/add_ex" method="post">
         <label for="exercise">Упражнение:</label>
         <input type="text" name="exercise" id="exercise">
         <input type="submit" value="Добавить">
     </form>
-    <a href = "/"> На главную</a>
+    <table>
+        <tr>
+            
+            <th>Список упражнений</th>
+        </tr>
+        {% for row in rows %}
+        <tr>
+            
+            <td>{{ row[1] }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+   
+    
 </body>
 </html>

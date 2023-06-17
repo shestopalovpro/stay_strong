@@ -10,6 +10,10 @@
             text-align: center;
             margin-top: 50px;
         }
+        h2 {
+            text-align: center;
+            margin-top: 25px;
+        }
         a {display: block; text-align: center;}
         form {
             margin: 50px auto;
@@ -59,26 +63,17 @@
         input[type="submit"]:hover {
             background-color: #3e8e41;
         }
+        details{
+            margin-top: 10px;
+            text-align: center;
+        }
     </style>
 </head>
 <body>
-    <h1>План</h1>
-    <table>
-        <tr>
-            <th>Дата</th>
-            <th>Упражнение</th>
-            <th>Число повторений</th>
-        </tr>
-        {% for row in rows %}
-        <tr>
-            <td>{{ row[2] }}</td>
-            <td>{{ row[3] }}</td>
-            <td>{{ row[4] }}</td>
-        </tr>
-        {% endfor %}
-    </table>
-
     <h1>План упражнений</h1>
+    
+    <h2>Добавить упражнение в план</h2>
+    <a href = "/"> На главную</a>
     <form action="/add_plan" method="post">
         <label for="date">Дата:</label>
         <input type="date" name="date" id="date">
@@ -93,6 +88,25 @@
         <input type="submit" value="Запланировать">
     </form>
 
-    <a href = "/"> На главную</a>
+    <details>
+        <summary>Показать план</summary> 
+    <table>
+        <tr>
+            <th>Дата</th>
+            <th>Упражнение</th>
+            <th>Число повторений</th>
+        </tr>
+        {% for row in rows %}
+        <tr>
+            <td>{{ row[2] }}</td>
+            <td>{{ row[3] }}</td>
+            <td>{{ row[4] }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</details>
+
+ 
+    
 </body>
 </html>
