@@ -16,12 +16,32 @@ c.execute('''CREATE TABLE IF NOT EXISTS exercises
               name TEXT)''')
 conn.commit()
 
+conn = get_db_connection()
+c = conn.cursor()
+c.execute('''CREATE TABLE IF NOT EXISTS plan
+             (id INTEGER PRIMARY KEY AUTOINCREMENT,
+              done INTEGER, date TEXT, exercise TEXT, quantity INTEGER)''')
+conn.commit()
+
 @app.route('/')
 def index():
     # получение всех записей из таблицы trainings
     conn = get_db_connection()
     c = conn.cursor()
-    return render_template('index.html')
+    
+    c.execute("SELECT id, exercise, quantity FROM plan WHERE done = 0")
+    exercises = c.fetchall()
+    return render_template('index.html', exercises=exercises)
+
+@app.route('/update_plan', methods=['POST'])
+def update_plan():
+ # Получение данных из формы
+    plan_id = request.form['id']
+    conn = get_db_connection()
+    c = conn.cursor()
+    c.execute("UPDATE plan SET done=? WHERE id=?", (int(1), plan_id,))
+    conn.commit()
+    return redirect('/')
 
 
 
@@ -45,6 +65,21 @@ def add_exercises():
     c.execute('INSERT INTO exercises (name) VALUES (?)',(exercise,))
     conn.commit()
     return redirect('/trains')
+
+@app.route('/add_plan', methods=['POST'])
+def add_plan():
+    # получение данных из формы и запись в базу данных
+    conn = get_db_connection()
+    c = conn.cursor()
+    
+    dateplan = request.form['date']
+    exercise = request.form['exercise']
+    quantity = request.form['quantity']
+    
+    c.execute('INSERT INTO plan (done, date, exercise, quantity) VALUES (?,?,?,?)',(int(0),dateplan,exercise,quantity,))
+    conn.commit()
+    return redirect('/plan')
+
 @app.route('/plan')
 def select_ex():
     # получение всех записей из таблицы exercises
@@ -56,7 +91,13 @@ def select_ex():
     options = []
     for row in rows:
         options.append(row[1]) # добавление названия упражнения в список
-    return render_template('plan.html', options=options)
+    c.execute("SELECT * FROM plan WHERE done = 0")
+    rows = c.fetchall()
+    return render_template('plan.html', options=options,rows=rows)
+   
+    
+
+    
 
 if __name__ == '__main__':
     app.run(debug=True)

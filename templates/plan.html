@@ -31,6 +31,23 @@
             margin-bottom: 20px;
             width: 100%;
         }
+        table {
+            margin: 50px auto;
+            border-collapse: collapse;
+            border: 2px solid #ccc;
+            border-radius: 10px;
+            width: 50%;
+        }
+        th {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px;
+            text-align: left;
+        }
+        td {
+            border: 1px solid #ccc;
+            padding: 10px;
+        }
         input[type="submit"] {
             background-color: #4CAF50;
             color: white;
@@ -45,8 +62,24 @@
     </style>
 </head>
 <body>
+    <h1>План</h1>
+    <table>
+        <tr>
+            <th>Дата</th>
+            <th>Упражнение</th>
+            <th>Число повторений</th>
+        </tr>
+        {% for row in rows %}
+        <tr>
+            <td>{{ row[2] }}</td>
+            <td>{{ row[3] }}</td>
+            <td>{{ row[4] }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+
     <h1>План упражнений</h1>
-    <form action="/result" method="post">
+    <form action="/add_plan" method="post">
         <label for="date">Дата:</label>
         <input type="date" name="date" id="date">
         <label for="exercise">Упражнение:</label>
@@ -55,8 +88,6 @@
             <option value="{{ option }}">{{ option }}</option>
             {% endfor %}
         </select>
-        <label for="approaches">Количество подходов:</label>
-        <input type="number" name="approaches" id="approaches">
         <label for="quantity">Количество повторений:</label>
         <input type="number" name="quantity" id="quantity">
         <input type="submit" value="Запланировать">
