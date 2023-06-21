@@ -64,14 +64,15 @@
 <body>
     <h1>Stay Strong</h1>
     <a href = '/plan'> Планирование тренировок </a><br>
-    <a href = '/trains'> Добавить упражнение </a>
+    <a href = '/trains'> Добавить упражнение </a><br>
+    <a href = '/stat'> Статистика </a>
     
     <h2>Список упражнений на сегодня</h2>
   
   <form action="/update_plan" method="post">
     {% for exercise in exercises %}
     <input type="hidden" name="id" value="{{ exercise[0] }}">
-    <input type="submit" value="{{ exercise[1] }} ({{ exercise[2] }})">
+    <input type="submit" value="{{ exercise[1] }} ({{ exercise[2] }}) ({{ exercise[3] }})">
     {% endfor %}
   </form>
   

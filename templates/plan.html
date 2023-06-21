@@ -87,7 +87,9 @@
             {% endfor %}
         </select>
         <label for="quantity">Количество повторений:</label>
-        <input type="number" name="quantity" id="quantity">
+        <input type="number" min=1 value=1 name="quantity" id="quantity">
+        <label for="quantity">Вес</label>
+        <input type="number" min=0 value=0 step="0.1" name="weight" id="weight">
         <input type="submit" value="Запланировать">
     </form>
 
@@ -98,12 +100,14 @@
             <th>Дата</th>
             <th>Упражнение</th>
             <th>Число повторений</th>
+            <th>Вес</th>
         </tr>
         {% for row in rows %}
         <tr>
             <td>{{ row[2] }}</td>
             <td>{{ row[3] }}</td>
             <td>{{ row[4] }}</td>
+            <td>{{ row[5] }}</td>
         </tr>
         {% endfor %}
     </table>
