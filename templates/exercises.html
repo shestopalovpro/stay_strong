@@ -1,21 +1,23 @@
 <html>
 <head>
     <title>Список упражнений</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
         body {
             font-family: Arial, sans-serif;
-            font-size: 22px;
+            font-size: 18px;
         }
         h1 {
             text-align: center;
-            margin-top: 50px;
+            margin-top: 30px;
         }
         table {
-            margin: 50px auto;
+            margin: 30px auto;
             border-collapse: collapse;
             border: 2px solid #ccc;
             border-radius: 10px;
-            width: 50%;
+            width: 90%;
+            max-width: 600px;
         }
         th {
             background-color: #4CAF50;
@@ -30,11 +32,12 @@
         a {display: block; text-align: center;}
         h2 {
             text-align: center;
-            margin-top: 50px;
+            margin-top: 30px;
         }
         form {
             margin: 20px auto;
-            width: 50%;
+            width: 90%;
+            max-width: 600px;
             border: 2px solid #ccc;
             padding: 20px;
             border-radius: 10px;
@@ -65,7 +68,7 @@
 </head>
 <body>
     <h1>Список упражнений</h1>
-    <a href = "/"> На главную</a>
+    <a href="/">На главную</a>
     <h2>Добавить упражнение</h2>
     <form action="/add_ex" method="post">
         <label for="exercise">Упражнение:</label>
@@ -74,17 +77,13 @@
     </form>
     <table>
         <tr>
-            
             <th>Список упражнений</th>
         </tr>
         {% for row in rows %}
         <tr>
-            
             <td>{{ row[1] }}</td>
         </tr>
         {% endfor %}
     </table>
-   
-    
 </body>
 </html>
