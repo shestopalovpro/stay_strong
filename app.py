@@ -1,8 +1,8 @@
 from flask import Flask, render_template, request, redirect, send_file
 import sqlite3
 import datetime
-import matplotlib.pyplot as plt
-import io
+
+
 
 app = Flask(__name__,template_folder='templates')
 
@@ -97,32 +97,26 @@ def select_ex():
     return render_template('plan.html', options=options,rows=rows)
 
 @app.route('/stat')
-def graph():
-    conn = get_db_connection()
-    c = conn.cursor()
-
-    c.execute("SELECT date, quantity FROM plan WHERE exercise=?", ('Отжимания',))
-    rows = c.fetchall()
-
-    dates = [row[0] for row in rows]
-    quantities = [row[1] for row in rows]
-
-    buf = io.BytesIO()
-    
-    buf.close()
-    plt.plot(dates, quantities)
-    plt.xlabel('Дата')
-    plt.ylabel('Количество повторений')
-    plt.title('График выполнения упражнения "Отжимания"')
-
-    # Сохраняем график в буфер
-    buf = io.BytesIO()
-    
-    plt.savefig(buf, format='png')
-    buf.seek(0)
-
-    # Выводим график на страницу
-    return send_file(buf, mimetype='image/png')
+def stat():
+ 
+    # Define Plot Data 
+    labels = [
+        'January',
+        'February',
+        'March',
+        'April',
+        'May',
+        'June',
+    ]
+ 
+    data = [0, 10, 15, 8, 22, 18, 25]
+ 
+    # Return the components to the HTML template 
+    return render_template(
+        template_name_or_list='stat.html',
+        data=data,
+        labels=labels,
+    )
     
 
 if __name__ == '__main__':
