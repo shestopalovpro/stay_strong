@@ -98,18 +98,16 @@ def select_ex():
 
 @app.route('/stat')
 def stat():
- 
-    # Define Plot Data 
-    labels = [
-        'January',
-        'February',
-        'March',
-        'April',
-        'May',
-        'June',
-    ]
- 
-    data = [0, 10, 15, 8, 22, 18, 25]
+    conn = get_db_connection()
+    c = conn.cursor()
+    
+    c.execute("SELECT plan.date,AVG(exercises.ratio*plan.quantity) FROM plan JOIN exercises ON plan.exercise = exercises.name WHERE done = 1 GROUP BY plan.date")
+    
+    results = c.fetchall()
+
+    labels = [r[0] for r in results]
+    data = [r[1] for r in results]
+    
  
     # Return the components to the HTML template 
     return render_template(
