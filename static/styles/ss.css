@@ -1,0 +1,193 @@
+.main {
+    text-align: center;
+    padding: 1em;
+}
+
+
+.header {
+    margin: 0;
+    color: #333;
+    text-align: center;
+
+    border-bottom: 1px solid #eee;
+}
+
+.pure-menu-item {
+    padding: 0;
+    margin: 0;
+    height: 40;
+}
+
+form {
+    display: flex;
+    margin: 50px auto;
+    width: 40%;
+
+
+    border-radius: 10px;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.header h1 {
+    margin: 0.2em 0;
+    font-size: 3em;
+    font-weight: 300;
+}
+
+.header h2 {
+    font-weight: 300;
+    color: #ccc;
+    padding: 0;
+    margin-top: 0;
+}
+
+.header h3 {
+    
+
+    color: #e50b0b;
+}
+
+
+
+progress {
+border-radius: 5px; 
+width: 25%;
+height: 22px;
+margin-bottom: 10;
+}
+progress::-webkit-progress-bar {
+background-color:#ccc;
+border-radius: 5px;
+}
+progress::-webkit-progress-value {
+background-color: #e50b0b;
+border-radius: 5px;
+
+}
+
+
+.button-success,
+.button-error,
+.button-warning,
+.button-secondary {
+    color: white;
+    border-radius: 4px;
+    margin-bottom: 5px;
+    width: 100%;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+}
+
+.button-success {
+    background: rgb(28, 184, 65);
+    /* this is a green */
+}
+
+.button-error {
+    background: rgb(202, 60, 60);
+    /* this is a maroon */
+}
+
+.button-warning {
+    background: rgb(223, 117, 20);
+    /* this is an orange */
+}
+
+.button-secondary {
+    background: rgb(66, 184, 221);
+    /* this is a light blue */
+}
+
+
+.custom-wrapper {
+    background-color: #191818;
+    margin-bottom: 1em;
+    -webkit-font-smoothing: antialiased;
+    height: 2.1em;
+    overflow: hidden;
+    -webkit-transition: height 0.5s;
+    -moz-transition: height 0.5s;
+    -ms-transition: height 0.5s;
+    transition: height 0.5s;
+}
+
+.custom-wrapper.open {
+    height: 14em;
+}
+
+.custom-menu-3 {
+    text-align: right;
+}
+
+.custom-toggle {
+    width: 34px;
+    height: 34px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    display: none;
+}
+
+.pure-menu-link {
+    color: #fff;
+}
+
+.pure-menu-heading {
+    text-transform: uppercase;
+    color: #fff;
+}
+
+.custom-toggle .bar {
+    background-color: #fff;
+    display: block;
+    width: 20px;
+    height: 2px;
+    border-radius: 100px;
+    position: absolute;
+    top: 18px;
+    right: 7px;
+    -webkit-transition: all 0.5s;
+    -moz-transition: all 0.5s;
+    -ms-transition: all 0.5s;
+    transition: all 0.5s;
+}
+
+.custom-toggle .bar:first-child {
+    -webkit-transform: translateY(-6px);
+    -moz-transform: translateY(-6px);
+    -ms-transform: translateY(-6px);
+    transform: translateY(-6px);
+}
+
+.custom-toggle.x .bar {
+    -webkit-transform: rotate(45deg);
+    -moz-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+
+.custom-toggle.x .bar:first-child {
+    -webkit-transform: rotate(-45deg);
+    -moz-transform: rotate(-45deg);
+    -ms-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+}
+
+@media (max-width: 47.999em) {
+
+    .custom-menu-3 {
+        text-align: left;
+    }
+
+    form {
+
+        width: 100%;
+
+    }
+
+    .custom-toggle {
+        display: block;
+    }
+
+}

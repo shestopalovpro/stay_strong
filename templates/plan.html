@@ -2,6 +2,7 @@
 <head>
     <title>План упражнений</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link type="image/png" sizes="16x16" rel="icon" href="https://shestopalovpro.ru/wp-content/uploads/2023/10/dumbbell-solid.png">
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -15,6 +16,11 @@
             text-align: center;
             margin-top: 20px;
         }
+ h3 {
+            text-align: center;
+            margin-top: 24px;
+        }
+
         a {display: block; text-align: center;}
         form {
             margin: 20px auto;
@@ -73,10 +79,12 @@
     </style>
 </head>
 <body>
-    <h1>План упражнений</h1>
+<h1>Stay Strong</h1>
+<a href="/">На главную</a>    
+<h2>План упражнений</h2>
     
-    <h2>Добавить упражнение в план</h2>
-    <a href = "/"> На главную</a>
+    <h3>Добавить упражнение в план</h3>
+    
     <form action="/add_plan" method="post">
         <label for="date">Дата:</label>
         <input type="date" name="date" id="date">

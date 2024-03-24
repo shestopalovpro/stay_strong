@@ -31,7 +31,21 @@ def index():
     current_date = datetime.date.today()
     c.execute("SELECT id, exercise, quantity, weight FROM plan WHERE done = 0 AND date = ?",(current_date,))
     exercises = c.fetchall()
-    return render_template('index.html', exercises=exercises)
+
+
+    conn = get_db_connection()
+    c = conn.cursor()
+    
+    c.execute("SELECT plan.date,SUM((exercises.ratio*plan.quantity+exercises.ratio*plan.weight)*10) FROM plan JOIN exercises ON plan.exercise = exercises.name WHERE done = 1 GROUP BY plan.date")
+    indexss = c.fetchall()
+    indexavg = []
+    for inss in indexss:
+      indexavg.append(round(inss[1],3))
+    counttrains = len(indexavg)
+    indexssv=round(sum(indexavg)/len(indexavg),3)
+    indexmax=max(indexavg)
+    
+    return render_template('index.html', exercises=exercises,indexss=indexssv,indexmax=indexmax,counttrains=counttrains)
 
 @app.route('/update_plan', methods=['POST'])
 def update_plan():
@@ -90,7 +104,7 @@ def select_ex():
     options = []
     for row in rows:
         options.append(row[1]) 
-    c.execute("SELECT * FROM plan WHERE done = 0")
+    c.execute("SELECT * FROM plan WHERE done = 0 AND date >= DATE('now') ORDER BY plan.date")
     rows = c.fetchall()
     return render_template('plan.html', options=options,rows=rows)
 
@@ -99,7 +113,7 @@ def stat():
     conn = get_db_connection()
     c = conn.cursor()
     
-    c.execute("SELECT plan.date,AVG(exercises.ratio*plan.quantity) FROM plan JOIN exercises ON plan.exercise = exercises.name WHERE done = 1 GROUP BY plan.date")
+    c.execute("SELECT plan.date,SUM((exercises.ratio*plan.quantity+exercises.ratio*plan.weight)*10) FROM plan JOIN exercises ON plan.exercise = exercises.name WHERE done = 1 GROUP BY plan.date")
     
     results = c.fetchall()
 

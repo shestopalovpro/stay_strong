@@ -1,0 +1,98 @@
+<html lang="ru">
+<head>
+    <title>Stay Strong</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap" rel="stylesheet">
+<!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link type="image/png" sizes="16x16" rel="icon" href="https://shestopalovpro.ru/wp-content/uploads/2023/10/dumbbell-solid.png">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            font-size: 22px;
+        }
+        h1 {
+            text-align: center;
+            margin-top: 50px;
+        }
+        h2 {
+            text-align: center;
+            margin-top: 50px;
+        }
+ h3 {
+            text-align: center;
+margin-top: 35px;            
+color: #e50b0b;
+        }
+        a {display: block; text-align: center;}
+        form {
+            display: flex;
+            margin: 50px auto;
+            width: 80%;
+            border: 2px solid #ccc;;
+            padding: 20px;
+            border-radius: 10px;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+        label {
+            display: block;
+            margin-bottom: 10px;
+        }
+        input[type="date"],
+        select,
+        input[type="number"] {
+            padding: 5px;
+            border-radius: 5px;
+            border: 2px solid #ccc;;
+            margin-bottom: 20px;
+            width: 100%;
+        }
+        input[type="submit"] {
+            display: flex;
+            font-size: 14px;
+            background-color: #4CAF50;
+            color: white;
+            padding: 15px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+            margin-bottom: 10px;
+            width: 100%;
+            
+        }
+        input[type="submit"]:hover {
+            background-color: #3e8e41;
+            
+            
+        }
+    </style>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1>Stay Strong</h1>
+<h3>SSI: {{ indexss }} | SSI MAX: {{ indexmax }}</h3>
+    
+<a href = '/plan'> Планирование тренировок </a><br>
+    <a href = '/trains'> Добавить упражнение </a><br>
+    <a href = '/stat'> Статистика </a>
+<h3>Количество тренировок: {{counttrains}} </h3>    
+    <h2>Список упражнений на сегодня</h2>
+  
+  <form action="/update_plan" method="post" class="col s12">
+    {% for exercise in exercises %}
+    <input type="hidden" name="id" value="{{ exercise[0] }}">
+    <input class="waves-effect waves-light btn" type="submit" value="{{ exercise[1] }} ({{ exercise[2] }}) ({{ exercise[3] }})">
+    {% endfor %}
+  </form>
+  
+</body>
+</html>

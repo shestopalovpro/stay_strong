@@ -1,40 +1,93 @@
-
 <html lang="ru">
- 
 <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <title>Stay Strong Index</title>
-</head>
- 
-<body>
-    <div style="height: 50vh; width: 50%; margin: 0 auto;">
-        <canvas id="myChart"></canvas>
+    <link type="image/png" sizes="16x16" rel="icon"
+        href="https://shestopalovpro.ru/wp-content/uploads/2023/10/dumbbell-solid.png">
+    <title>Stay Strong</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/purecss@3.0.0/build/pure-min.css"
+        integrity="sha384-X38yfunGUhNzHpBaEBsWLO+A0HDYOQi8ufWDkZ0k9e0eXz/tH3II7uKZ9msv++Ls" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/purecss@3.0.0/build/grids-responsive-min.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link type="image/png" sizes="16x16" rel="icon"
+        href="https://shestopalovpro.ru/wp-content/uploads/2023/10/dumbbell-solid.png">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles/ss.css') }}">
+
+    <div class="custom-wrapper pure-g" id="menu">
+        <div class="pure-u-1 pure-u-md-1-3">
+            <div class="pure-menu">
+                <a href="/" class="pure-menu-heading custom-brand">Stay Strong</a>
+                <a href="/" class="custom-toggle" id="toggle"><s class="bar"></s><s class="bar"></s></a>
+            </div>
+        </div>
+        <div class="pure-u-1 pure-u-md-1-3">
+            <div class="pure-menu pure-menu-horizontal custom-can-transform">
+                <ul class="pure-menu-list">
+                    <li class="pure-menu-item"><a href='/plan' class="pure-menu-link"> Планирование тренировок </a></li>
+                    <li class="pure-menu-item"><a href='/trains' class="pure-menu-link"> Добавить упражнение </a></li>
+                    <li class="pure-menu-item"><a href='/stat' class="pure-menu-link"> Статистика </a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="pure-u-1 pure-u-md-1-3">
+            <div class="pure-menu pure-menu-horizontal custom-menu-3 custom-can-transform">
+                <ul class="pure-menu-list">
+                    <li class="pure-menu-item"><a href="https://www.youtube.com/channel/UCRRJ82Hgcu9fnHBkG0qQc6Q"
+                            class="pure-menu-link">YouTube</a></li>
+
+                </ul>
+            </div>
+        </div>
     </div>
- 
-    <script>
-        const labels = {{ labels | tojson}};
- 
-        const data = {
-            labels: labels,
-            datasets: [{
-                label: 'Stay Strong Index',
-                backgroundColor: 'rgb(255, 99, 132)',
-                borderColor: 'rgb(255, 99, 132)',
-                data: {{ data | tojson}},
+    <script src="{{ url_for('static',filename='js/ss.js') }}"></script>
+
+
+
+</head>
+
+<body>
+    <div class="main">
+        <div class="header">
+            <h1>Stay Strong</h1>
+            <h2>Будь сильным. Верь в себя.</h2>
+        </div>
+        <br>
+        <div style="height: 50vh; width: 100%; margin: 0 auto;">
+
+            <canvas id="myChart"></canvas>
+        </div>
+
+        <script>
+            const labels = {{ labels | tojson}};
+
+            const data = {
+                labels: labels,
+                datasets: [{
+                    label: 'Stay Strong Index',
+                    backgroundColor: 'rgb(255, 99, 132)',
+                    borderColor: 'rgb(255, 99, 132)',
+                    data: {{ data | tojson}},
             }]
         };
- 
-        const config = {
-            type: 'line',
-            data: data,
-            options: { maintainAspectRatio: false }
-        };
- 
-        const myChart = new Chart(
-            document.getElementById('myChart'),
-            config
-        );
- 
-    </script>
+
+            const config = {
+                type: 'line',
+                data: data,
+                options: { maintainAspectRatio: false }
+            };
+
+            const myChart = new Chart(
+                document.getElementById('myChart'),
+                config
+            );
+
+        </script>
+        <br>
+    </div>
 </body>
+
 </html>
